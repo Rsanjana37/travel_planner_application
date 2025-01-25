@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travel_planner/screens/home_screen.dart';
 import 'dart:async';
-import 'welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => WelcomeScreen()),
+        MaterialPageRoute(builder: (context) => HomeScreen()),
       );
     });
   }

@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import '../models/trip.dart';
 
@@ -11,7 +12,19 @@ class _AddTripScreenState extends State<AddTripScreen> {
   String _name = '';
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now().add(Duration(days: 1));
-  String _imageUrl = '';
+  final List<String> _imageUrls = [
+    'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2l0eXxlbnwwfHwwfHx8MA%3D%3D',
+    'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2l0eXxlbnwwfHwwfHx8MA%3D%3D',
+    'https://thumbs.dreamstime.com/b/city-chicago-20896212.jpg',
+    'https://idsb.tmgrup.com.tr/ly/uploads/images/2023/04/11/267064.jpg',
+    'https://i0.wp.com/travelforawhile.com/wp-content/uploads/2022/01/Verona-Romeo-and-Juliet.jpg?resize=1200%2C800&ssl=1',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi7CHydME7Ji3cLyDeNARaJYXWEvEpToPFDtNIkr1Iu2NGZLlbcBzPgdC8lHvQhvngTUc&usqp=CAU'
+        'https://st.depositphotos.com/1035350/2277/i/450/depositphotos_22772802-stock-photo-tokyo-cityscape.jpg'
+  ];
+  String _getRandomImage() {
+    final random = Random();
+    return _imageUrls[random.nextInt(_imageUrls.length)];
+  }
 
   Future<void> _selectDate(BuildContext context, bool isStartDate) async {
     final DateTime? picked = await showDatePicker(
@@ -37,11 +50,12 @@ class _AddTripScreenState extends State<AddTripScreen> {
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      final randomImageUrl = _getRandomImage();
       final newTrip = Trip(
         name: _name,
         startDate: _startDate,
         endDate: _endDate,
-        imageUrl: _imageUrl,
+        imageUrl: randomImageUrl,
       );
       Navigator.pop(context, newTrip);
     }
@@ -95,17 +109,6 @@ class _AddTripScreenState extends State<AddTripScreen> {
               ],
             ),
             SizedBox(height: 16.0),
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Image URL'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter an image URL';
-                }
-                return null;
-              },
-              onSaved: (value) => _imageUrl = value!,
-            ),
-            SizedBox(height: 32.0),
             ElevatedButton(
               onPressed: _submitForm,
               child: Text('Add Trip'),

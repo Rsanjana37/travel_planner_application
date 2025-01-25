@@ -42,29 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            expandedHeight: 200.0,
-            floating: false,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text('My Trips'),
-              background: Image.network(
-                'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1000&q=80',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return _buildTripCard(context, trips[index]);
-              },
-              childCount: trips.length,
-            ),
-          ),
-        ],
+      appBar: AppBar(
+        title: Text('My Trips'),
+      ),
+      body: ListView.builder(
+        itemCount: trips.length,
+        itemBuilder: (context, index) {
+          return _buildTripCard(context, trips[index]);
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addNewTrip,
@@ -77,7 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildTripCard(BuildContext context, Trip trip) {
     return Card(
       margin: EdgeInsets.all(8.0),
-      elevation: 4.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       child: InkWell(
         onTap: () {

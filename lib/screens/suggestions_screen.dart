@@ -14,36 +14,80 @@ class SuggestionsScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          _buildSuggestionCategory('Accommodations'),
-          _buildSuggestionCategory('Restaurants'),
-          _buildSuggestionCategory('Attractions'),
+          _buildSuggestionCategory(context, 'Accommodations'),
+          _buildSuggestionCategory(context, 'Restaurants'),
+          _buildSuggestionCategory(context, 'Attractions'),
         ],
       ),
     );
   }
 
-  Widget _buildSuggestionCategory(String category) {
+  Widget _buildSuggestionCategory(BuildContext context, String category) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: Text(
             category,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
         ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemCount: 3,
+          itemCount: trip.suggestions[category]!.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text('Suggestion ${index + 1}'),
-              subtitle: Text('Description of the suggestion'),
-              onTap: () {
-                // TODO: Implement suggestion details
-              },
+            final suggestion = trip.suggestions[category]![index];
+            return Card(
+              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(4)),
+                    child: Image.network(
+                      suggestion.imageUrl,
+                      height: 200,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          suggestion.name,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        SizedBox(height: 8),
+                        Row(
+                          children: [
+                            ...List.generate(5, (index) {
+                              return Icon(
+                                index < suggestion.rating.floor()
+                                    ? Icons.star
+                                    : index < suggestion.rating
+                                        ? Icons.star_half
+                                        : Icons.star_border,
+                                color: Colors.amber,
+                                size: 18,
+                              );
+                            }),
+                            SizedBox(width: 8),
+                            Text(suggestion.rating.toStringAsFixed(1)),
+                          ],
+                        ),
+                        SizedBox(height: 8),
+                        Text(suggestion.description),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             );
           },
         ),

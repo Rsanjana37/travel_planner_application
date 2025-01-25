@@ -19,7 +19,22 @@ class TripScreen extends StatelessWidget {
             floating: false,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(trip.name),
+              title: Text(
+                trip.name,
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                      blurRadius: 10,
+                      color: Colors.black.withOpacity(0.7),
+                      offset: Offset(2, 2),
+                    ),
+                  ],
+                ),
+              ),
               background: Image.network(
                 trip.imageUrl,
                 fit: BoxFit.cover,

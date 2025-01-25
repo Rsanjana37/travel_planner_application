@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:travel_planner/screens/day_planner_screen.dart';
 import '../models/trip.dart';
+import 'day_planner_screen.dart';
 
 class ItineraryScreen extends StatelessWidget {
   final Trip trip;
@@ -18,10 +18,11 @@ class ItineraryScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           final currentDate = trip.startDate.add(Duration(days: index));
           return Card(
+            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: ListTile(
               title: Text(
                   'Day ${index + 1}: ${currentDate.toString().substring(0, 10)}'),
-              subtitle: Text('Tap to add activities'),
+              subtitle: Text('Tap to plan activities'),
               onTap: () {
                 Navigator.push(
                   context,
