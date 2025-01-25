@@ -18,8 +18,8 @@ class _AddTripScreenState extends State<AddTripScreen> {
     'https://thumbs.dreamstime.com/b/city-chicago-20896212.jpg',
     'https://idsb.tmgrup.com.tr/ly/uploads/images/2023/04/11/267064.jpg',
     'https://i0.wp.com/travelforawhile.com/wp-content/uploads/2022/01/Verona-Romeo-and-Juliet.jpg?resize=1200%2C800&ssl=1',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi7CHydME7Ji3cLyDeNARaJYXWEvEpToPFDtNIkr1Iu2NGZLlbcBzPgdC8lHvQhvngTUc&usqp=CAU'
-        'https://st.depositphotos.com/1035350/2277/i/450/depositphotos_22772802-stock-photo-tokyo-cityscape.jpg'
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi7CHydME7Ji3cLyDeNARaJYXWEvEpToPFDtNIkr1Iu2NGZLlbcBzPgdC8lHvQhvngTUc&usqp=CAU',
+    'https://st.depositphotos.com/1035350/2277/i/450/depositphotos_22772802-stock-photo-tokyo-cityscape.jpg'
   ];
   String _getRandomImage() {
     final random = Random();
