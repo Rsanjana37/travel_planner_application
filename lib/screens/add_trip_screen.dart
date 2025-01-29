@@ -110,7 +110,7 @@ class _AddTripScreenState extends State<AddTripScreen> {
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: _submitForm,
+              onPressed: () {},
               child: Text('Add Trip'),
             ),
           ],
