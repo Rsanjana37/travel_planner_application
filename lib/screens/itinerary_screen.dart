@@ -96,19 +96,7 @@ class ItineraryScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(_getActivityPreview(activities)),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DayPlannerScreen(
-                            trip: trip,
-                            day: currentDate,
-                          ),
-                        ),
-                      ).then((_) {
-                        (context as Element).markNeedsBuild();
-                      });
-                    },
+                    onTap: () {},
                     trailing: Icon(Icons.arrow_forward_ios),
                   ),
                 );
