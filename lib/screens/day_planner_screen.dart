@@ -78,7 +78,7 @@ class _DayPlannerScreenState extends State<DayPlannerScreen> {
                 ),
                 SizedBox(width: 8),
                 ElevatedButton(
-                  onPressed: _addActivity,
+                  onPressed: () {},
                   child: Text('Add'),
                 ),
               ],
