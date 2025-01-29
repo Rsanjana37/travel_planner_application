@@ -103,16 +103,6 @@ class _BudgetScreenState extends State<BudgetScreen> {
               ],
             ),
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text('Cancel'),
-            ),
-            ElevatedButton(
-              onPressed: _addExpense,
-              child: Text('Add'),
-            ),
-          ],
         );
       },
     );
