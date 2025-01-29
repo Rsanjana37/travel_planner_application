@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/trip.dart';
-import 'trip_screen.dart';
-import 'add_trip_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -65,10 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       child: InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => TripScreen(trip: trip)),
-          );
+
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
