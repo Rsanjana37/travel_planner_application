@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../models/trip.dart';
 import 'itinerary_screen.dart';
 import 'budget_screen.dart';
 import 'suggestions_screen.dart';
@@ -45,35 +44,10 @@ class TripScreen extends StatelessWidget {
             delegate: SliverChildListDelegate([
               _buildInfoCard(context),
               _buildOptionCard(
-                context,
-                'Itinerary',
-                Icons.calendar_today,
-                () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ItineraryScreen(trip: trip)),
-                ),
-              ),
+                  context, 'Itinerary', Icons.calendar_today, () => {}),
+              _buildOptionCard(context, 'Budget', Icons.attach_money, () => {}),
               _buildOptionCard(
-                context,
-                'Budget',
-                Icons.attach_money,
-                () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => BudgetScreen(trip: trip)),
-                ),
-              ),
-              _buildOptionCard(
-                context,
-                'Suggestions',
-                Icons.lightbulb_outline,
-                () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => SuggestionsScreen(trip: trip)),
-                ),
-              ),
+                  context, 'Suggestions', Icons.lightbulb_outline, () => {}),
             ]),
           ),
         ],
@@ -117,8 +91,8 @@ class TripScreen extends StatelessWidget {
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: ListTile(
-        leading: Icon(icon),
-        title: Text(title),
+        leading: Icon(),
+        title: Text(),
         trailing: Icon(Icons.arrow_forward_ios),
         onTap: onTap,
       ),
