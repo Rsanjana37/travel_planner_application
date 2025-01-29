@@ -6,8 +6,6 @@ class SuggestionsScreen extends StatelessWidget {
   final Trip trip;
 
   SuggestionsScreen({required this.trip});
-
-  // Static data for accommodations, restaurants, and attractions with ratings
   final List<Map<String, dynamic>> accommodations = [
     {
       'imageUrl':
@@ -89,7 +87,6 @@ class SuggestionsScreen extends StatelessWidget {
     },
   ];
 
-  // Function to get random suggestions
   List<Map<String, dynamic>> _getRandomSuggestions(
       List<Map<String, dynamic>> data) {
     final random = Random();
@@ -114,8 +111,6 @@ class SuggestionsScreen extends StatelessWidget {
         children: [
           _buildSuggestionCategory(
               context, 'Accommodations', randomAccommodations),
-          _buildSuggestionCategory(context, 'Restaurants', randomRestaurants),
-          _buildSuggestionCategory(context, 'Attractions', randomAttractions),
         ],
       ),
     );
