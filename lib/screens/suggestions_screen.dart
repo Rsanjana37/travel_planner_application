@@ -108,7 +108,7 @@ class SuggestionsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Suggestions: ${trip.name}'),
+        title: Text('Suggestions'),
       ),
       body: ListView(
         children: [

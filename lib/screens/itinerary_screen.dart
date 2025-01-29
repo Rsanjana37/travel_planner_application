@@ -9,7 +9,7 @@ class ItineraryScreen extends StatelessWidget {
     'https://t4.ftcdn.net/jpg/01/16/61/93/360_F_116619399_YA611bKNOW35ffK0OiyuaOcjAgXgKBui.jpg',
     'https://t3.ftcdn.net/jpg/01/76/33/14/360_F_176331484_nLHY9EoW0ETwPZaS9OBXPGbCJhT70GZe.jpg',
     'https://lajolla.com/nitropack_static/qjIMPjNnWKMPNOkdSPGMqXckjXGVLtvg/assets/images/optimized/rev-a739b3e/lajolla.com/wp-content/uploads/2021/06/Best-San-Diego-Hotels-With-Pools-Your-Ultimate-Guide-1024x576.jpg',
-    'https://thumbs.dreamstime.com/b/breathtaking-tropical-beach-scene-swaying-palm-trees-mesmerizing-sunset-330195710.jpg',
+    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhY2h8ZW58MHx8MHx8fDA%3D',
     'https://images.unsplash.com/photo-1724398932228-7acec186bdc2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3',
     'https://img-cdn.inc.com/image/upload/f_webp,q_auto,c_fit/images/panoramic/getty_522735456_249841.jpg',
   ];
@@ -106,7 +106,6 @@ class ItineraryScreen extends StatelessWidget {
                           ),
                         ),
                       ).then((_) {
-                        // Refresh the screen when returning from DayPlannerScreen
                         (context as Element).markNeedsBuild();
                       });
                     },

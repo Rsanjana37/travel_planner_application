@@ -167,14 +167,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Budget: ${widget.trip.name}'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.edit),
-            onPressed: _showSetBudgetDialog,
-            tooltip: 'Edit Budget',
-          ),
-        ],
+        title: Text('Budget'),
       ),
       body: Column(
         children: [
@@ -185,10 +178,19 @@ class _BudgetScreenState extends State<BudgetScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Budget Summary',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Budget Summary',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.edit),
+                          onPressed: _showSetBudgetDialog,
+                          tooltip: 'Edit Budget',
+                        ),
+                      ]),
                   SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
