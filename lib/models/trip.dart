@@ -120,5 +120,7 @@ class Trip {
 
   void setBudget(double newBudget) {
     budget = newBudget;
+    budget = newBudget;
+    budget = newBudget;
   }
 }
