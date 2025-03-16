@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_planner/models/trip.dart';
 import 'itinerary_screen.dart';
 import 'budget_screen.dart';
 import 'suggestions_screen.dart';
@@ -91,8 +92,8 @@ class TripScreen extends StatelessWidget {
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: ListTile(
-        leading: Icon(),
-        title: Text(),
+        leading: Icon(icon),
+        title: Text(title),
         trailing: Icon(Icons.arrow_forward_ios),
         onTap: onTap,
       ),

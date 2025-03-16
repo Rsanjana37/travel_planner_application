@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travel_planner/screens/add_trip_screen.dart';
+import 'package:travel_planner/screens/edit_trip_screen.dart';
 import '../models/trip.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -36,6 +38,19 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     }
   }
+  
+    _edittrip(Trip trip, int index) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => EditTripScreen(trip:trip)),
+    );
+
+     if (result != null && result is Trip) {
+    setState(() {
+      trips[index] = result; // Update the trip in the list
+    });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView.builder(
         itemCount: trips.length,
         itemBuilder: (context, index) {
-          return _buildTripCard(context, trips[index]);
+          return _buildTripCard(context, trips[index],index);
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -57,14 +72,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildTripCard(BuildContext context, Trip trip) {
+  Widget _buildTripCard(BuildContext context, Trip trip,index) {
     return Card(
       margin: EdgeInsets.all(8.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       child: InkWell(
-        onTap: () {
-
-        },
+        onTap: () {},
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -90,6 +103,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     '${trip.startDate.toString().substring(0, 10)} - ${trip.endDate.toString().substring(0, 10)}',
                     style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  SizedBox(height: 8.0),
+                  ElevatedButton(
+                    onPressed: ()=>{_edittrip(trip,index)},
+                    child: Text("Edit Trip"),
                   ),
                 ],
               ),
