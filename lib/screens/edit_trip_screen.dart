@@ -79,7 +79,7 @@ class _EditTripScreenState extends State<EditTripScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add New Trip'),
+        title: Text('Edit Trip'),
       ),
       body: Form(
         key: _formKey,
