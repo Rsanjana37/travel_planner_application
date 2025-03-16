@@ -38,17 +38,17 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     }
   }
-  
-    _edittrip(Trip trip, int index) async {
+
+  _edittrip(Trip trip, int index) async {
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => EditTripScreen(trip:trip)),
+      MaterialPageRoute(builder: (context) => EditTripScreen(trip: trip)),
     );
 
-     if (result != null && result is Trip) {
-    setState(() {
-      trips[index] = result; // Update the trip in the list
-    });
+    if (result != null && result is Trip) {
+      setState(() {
+        trips[index] = result; // Update the trip in the list
+      });
     }
   }
 
@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView.builder(
         itemCount: trips.length,
         itemBuilder: (context, index) {
-          return _buildTripCard(context, trips[index],index);
+          return _buildTripCard(context, trips[index], index);
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildTripCard(BuildContext context, Trip trip,index) {
+  Widget _buildTripCard(BuildContext context, Trip trip, index) {
     return Card(
       margin: EdgeInsets.all(8.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
@@ -106,7 +106,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(height: 8.0),
                   ElevatedButton(
-                    onPressed: ()=>{_edittrip(trip,index)},
+                    style: ButtonStyle(
+                      textStyle: WidgetStateProperty.all(TextStyle(fontWeight: FontWeight.bold)),
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(8), // Rounded corners
+                        ),
+                      ),
+                    ),
+                    onPressed: () => {_edittrip(trip, index)},
                     child: Text("Edit Trip"),
                   ),
                 ],
