@@ -2,12 +2,15 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../models/trip.dart';
 
-class AddTripScreen extends StatefulWidget {
+class EditTripScreen extends StatefulWidget {
+  final Trip? trip; // Add this line to accept a Trip object
+
+  EditTripScreen({this.trip}); 
   @override
-  _AddTripScreenState createState() => _AddTripScreenState();
+  _EditTripScreenState createState() => _EditTripScreenState();
 }
 
-class _AddTripScreenState extends State<AddTripScreen> {
+class _EditTripScreenState extends State<EditTripScreen> {
   final _formKey = GlobalKey<FormState>();
   String _name = '';
   DateTime _startDate = DateTime.now();
@@ -25,12 +28,23 @@ class _AddTripScreenState extends State<AddTripScreen> {
     final random = Random();
     return _imageUrls[random.nextInt(_imageUrls.length)];
   }
+   @override
+  void initState() {
+    super.initState();
+    if (widget.trip != null) {
+      // Pre-fill the form fields if a trip is passed
+      _name = widget.trip!.name;
+      _startDate = widget.trip!.startDate;
+      _endDate = widget.trip!.endDate;
+       
+    }
+  }
 
   Future<void> _selectDate(BuildContext context, bool isStartDate) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: isStartDate ? _startDate : _endDate,
-      firstDate: isStartDate ? DateTime.now() : _startDate,
+      firstDate: isStartDate ? _startDate : _startDate, 
       lastDate: DateTime.now().add(Duration(days: 365)),
     );
     if (picked != null) {
@@ -50,14 +64,14 @@ class _AddTripScreenState extends State<AddTripScreen> {
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      final randomImageUrl = _getRandomImage();
-      final newTrip = Trip(
+      final randomImageUrl = widget.trip?.imageUrl;
+      final updatedtrip = Trip(
         name: _name,
         startDate: _startDate,
         endDate: _endDate,
-        imageUrl: randomImageUrl,
+        imageUrl: widget.trip!.imageUrl,
       );
-      Navigator.pop(context, newTrip);
+      Navigator.pop(context, updatedtrip);
     }
   }
 
@@ -65,7 +79,7 @@ class _AddTripScreenState extends State<AddTripScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add New Trip'),
+        title: Text('Edit Trip'),
       ),
       body: Form(
         key: _formKey,
@@ -74,6 +88,7 @@ class _AddTripScreenState extends State<AddTripScreen> {
           children: [
             TextFormField(
               decoration: InputDecoration(labelText: 'Trip Name'),
+              initialValue: _name,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter a trip name';
@@ -110,8 +125,8 @@ class _AddTripScreenState extends State<AddTripScreen> {
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed:_submitForm,
-              child: Text('Add Trip'),
+              onPressed: _submitForm,
+              child: Text('Update Trip'),
             ),
           ],
         ),
